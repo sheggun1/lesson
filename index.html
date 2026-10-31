@@ -112,7 +112,7 @@ const pad=n=>String(n).padStart(2,'0');
 const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 const pdt=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)};
 const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
-const S={d:null,admin:sessionStorage.getItem('gtmc')==='1',tab:'overview',ym:iso(new Date()).slice(0,7),tk:'',ptk:'',pend:new Set(),per:1};
+const S={d:null,admin:sessionStorage.getItem('gtmc')==='1',tab:'overview',ym:iso(new Date()).slice(0,7),tk:'',ptk:'',pend:new Map(),per:1};
 const D=()=>S.d, key=t=>t.teacher+'|'+t.subject+'|'+t.class;
 const money=n=>D().rates.currency+Math.round(n).toLocaleString('en-NG');
 const isWE=s=>[0,6].includes(pdt(s).getDay());
@@ -162,19 +162,18 @@ function calendar(){
   const off=(new Date(y,mo-1,1).getDay()+6)%7,dim=new Date(y,mo,0).getDate();
   let c=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dow">${d}</div>`).join('')+'<div class="day blank"></div>'.repeat(off);
   for(let d=1;d<=dim;d++){const ds=`${y}-${pad(mo)}-${pad(d)}`,ls=t.lessons.filter(l=>l.date===ds),h=D().holidays.find(x=>x.date===ds);
-    const can=S.admin&&ls.length<maxL,sel=S.pend.has(ds),add=Math.min(S.per,maxL-ls.length);
+    const can=S.admin&&ls.length<maxL,add=S.pend.get(ds)||0,sel=add>0;
     c+=`<div class="day ${isWE(ds)?'we':''} ${h?'hol':''} ${ls.length?'has':''} ${sel?'sel':''} ${can?'can':''}" ${can?`data-a="pick" data-v="${ds}"`:''}><span class="dn">${d}</span>${h?`<span class="hl">${esc(h.note||'Holiday')}</span>`:''}
     ${ls.length?`<span class="cnt">${ls.length}✓${S.admin?`<i data-a="del" data-v="${ls[ls.length-1].rowIndex}" title="Remove one lesson">×</i>`:''}</span>`:''}${sel?`<span class="add">+${add}</span>`:''}</div>`}
   const ml=t.lessons.filter(l=>l.date.startsWith(S.ym)),sa=S.admin||t.showAmount;
-  const tools=S.admin?`<div class="tools"><span class="hint">Lessons per day:</span><div class="seg">${[1,2].filter(n=>n<=maxL).map(n=>`<button class="${S.per===n?'on':''}" data-a="per" data-v="${n}">${n}</button>`).join('')}</div>
-   <button class="btn ghost sm" data-a="wk">Select all weekdays</button><button class="btn ghost sm" data-a="clr">Clear selection</button></div><p class="hint" style="margin-bottom:.8rem">Tap the days taught, then press <b>Save</b>. Tap <b>×</b> on a green day to remove a lesson. Amber = holiday.</p>`:'';
+  const tools=S.admin?`<div class="tools"><button class="btn ghost sm" data-a="wk">Select all weekdays</button><button class="btn ghost sm" data-a="clr">Clear selection</button></div><p class="hint" style="margin-bottom:.8rem">Tap a day once for <b>1 lesson</b>, twice for <b>2 lessons</b>, a third time to unselect. Then press <b>Save</b>. Tap <b>×</b> on a green day to remove a lesson. Amber = holiday.</p>`:'';
   return monthNav()+`<div class="card"><div class="cb"><div class="fg" style="max-width:420px"><label>Teacher</label><select data-c="tk">${opts(key(t))}</select></div>${tools}<div class="cal">${c}</div></div></div>
   <div class="stats"><div class="stat"><small>Lessons this month</small><b>${ml.length}</b></div>${sa?`<div class="stat g"><small>Earned this month</small><b>${money(earned(t,S.ym))}</b></div>`:''}</div>`}
 
 function bar(){
   if(S.tab!=='calendar'||!S.admin||!S.pend.size||!D().teachers.length)return '';
   const t=T(),maxL=D().rates.maxLessonsPerDay;let n=0,amt=0;
-  S.pend.forEach(ds=>{const k=Math.min(S.per,maxL-t.lessons.filter(l=>l.date===ds).length);n+=k;amt+=k*rateOf(ds)});
+  S.pend.forEach((k,ds)=>{n+=k;amt+=k*rateOf(ds)});
   return `<div class="bar"><div><span><b>${S.pend.size}</b> day(s) · <b>${n}</b> lesson(s) · ${money(amt)}</span><span><button class="btn ghost" data-a="clr">Clear</button> <button class="btn ok" data-a="save">Save ${n} lesson(s)</button></span></div></div>`}
 
 function payments(){
@@ -234,14 +233,14 @@ const A={
   pm:v=>{let[y,m]=S.ym.split('-').map(Number);m+=+v;if(m<1){m=12;y--}if(m>12){m=1;y++}S.ym=y+'-'+pad(m);S.pend.clear();render()},
   today:()=>{S.ym=iso(new Date()).slice(0,7);S.pend.clear();render()},
   open:v=>{S.tk=key(D().teachers[v]);S.tab='calendar';S.pend.clear();render();scrollTo(0,0)},
-  pick:v=>{S.pend.has(v)?S.pend.delete(v):S.pend.add(v);render()},
+  pick:v=>{const cap=D().rates.maxLessonsPerDay-T().lessons.filter(l=>l.date===v).length,c=(S.pend.get(v)||0)+1;c>cap?S.pend.delete(v):S.pend.set(v,c);render()},
   per:v=>{S.per=+v;render()},
   clr:()=>{S.pend.clear();render()},
   wk:()=>{const t=T(),mx=D().rates.maxLessonsPerDay,[y,m]=S.ym.split('-').map(Number);
     for(let d=1;d<=new Date(y,m,0).getDate();d++){const ds=`${y}-${pad(m)}-${pad(d)}`;
-      if(!isWE(ds)&&!isHol(ds)&&t.lessons.filter(l=>l.date===ds).length<mx)S.pend.add(ds)}render()},
+      if(!isWE(ds)&&!isHol(ds)&&t.lessons.filter(l=>l.date===ds).length<mx)S.pend.set(ds,1)}render()},
   save:async()=>{const t=T(),mx=D().rates.maxLessonsPerDay,jobs=[];
-    [...S.pend].sort().forEach(ds=>{const ex=t.lessons.filter(l=>l.date===ds).length;for(let i=0;i<Math.min(S.per,mx-ex);i++)jobs.push(ds)});
+    [...S.pend].sort().forEach(([ds,k])=>{for(let i=0;i<k;i++)jobs.push(ds)});
     if(!jobs.length)return;$('#barHost').innerHTML='';const f={teacher:t.teacher,subject:t.subject,class:t.class};
     await run(async()=>{for(let i=0;i<jobs.length;i++){toast(`Saving ${i+1} of ${jobs.length}…`,'',0);await api('addLesson',{...f,date:jobs[i],dayType:isWE(jobs[i])?'weekend':'weekday'})}S.pend.clear()},jobs.length+' lesson(s) saved')},
   del:v=>{if(confirm('Remove one lesson from this day?'))run(()=>api('deleteLesson',{rowIndex:+v}),'Lesson removed')},
