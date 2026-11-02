@@ -1,519 +1,1477 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GTMC Teacher Lesson Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-
-:root{--blue:#0756a8;
---navy:#092b50;
---pale:#edf5ff;
---bg:#f4f7fb;
---line:#e0e7f0;
---muted:#64748b;
---green:#16834a;
---red:#c93434;
---amber:#fff5d9}
+:root{
+  --blue:#0756a8;
+  --navy:#092b50;
+  --pale:#edf5ff;
+  --bg:#f4f7fb;
+  --line:#e0e7f0;
+  --muted:#64748b;
+  --green:#16834a;
+  --red:#c93434;
+  --amber:#fff5d9
+}
 *{box-sizing:border-box}
-body{margin:0;
-background:var(--bg);
-color:#142338;
-font:14px/1.55 Inter,Arial,sans-serif}
-.top{background:linear-gradient(115deg,#062747,#0756a8);
-color:white}
-.topin,.wrap{max-width:1180px;
-margin:auto;
-padding:0 18px}
-.topin{min-height:76px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-flex-wrap:wrap}
-.brand{display:flex;
-gap:12px;
-align-items:center}
-.logo{height:42px;
-width:42px;
-border-radius:12px;
-background:white;
-color:var(--blue);
-display:grid;
-place-items:center;
-font-weight:800;
-font-size:18px}
-.brand strong{display:block;
-font-size:16px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:#142338;
+  font:14px/1.55 Inter,Arial,sans-serif
+}
+.top{background:linear-gradient(115deg,#062747,#0756a8);color:white}
+.topin,.wrap{max-width:1180px;margin:auto;padding:0 18px}
+.topin{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  height:42px;width:42px;border-radius:12px;background:white;
+  color:var(--blue);display:grid;place-items:center;
+  font-weight:800;font-size:18px
+}
+.brand strong{display:block;font-size:16px}
 .brand small{opacity:.8}
-.topactions{display:flex;
-align-items:center;
-gap:8px;
-flex-wrap:wrap}
-.role{background:#ffffff24;
-padding:5px 11px;
-border-radius:30px;
-font-size:12px}
-nav{position:sticky;
-top:0;
-background:white;
-border-bottom:1px solid var(--line);
-z-index:10}
-nav .wrap{display:flex;
-gap:5px;
-overflow:auto}
-nav button{background:none;
-border:0;
-border-bottom:3px solid transparent;
-padding:14px 13px;
-color:var(--muted);
-font:600 13px Inter;
-white-space:nowrap;
-cursor:pointer}
-nav button.active{color:var(--blue);
-border-color:var(--blue)}
-.wrap.main{padding-top:22px;
-padding-bottom:50px}
-.btn{border:0;
-border-radius:9px;
-padding:10px 15px;
-background:var(--blue);
-color:white;
-font:600 13px Inter;
-cursor:pointer}
+.topactions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.role{background:#ffffff24;padding:5px 11px;border-radius:30px;font-size:12px}
+nav{
+  position:sticky;top:0;background:white;
+  border-bottom:1px solid var(--line);z-index:10
+}
+nav .wrap{display:flex;gap:5px;overflow:auto}
+nav button{
+  background:none;border:0;border-bottom:3px solid transparent;
+  padding:14px 13px;color:var(--muted);
+  font:600 13px Inter;white-space:nowrap;cursor:pointer
+}
+nav button.active{color:var(--blue);border-color:var(--blue)}
+.wrap.main{padding-top:22px;padding-bottom:50px}
+.btn{
+  border:0;border-radius:9px;padding:10px 15px;
+  background:var(--blue);color:white;
+  font:600 13px Inter;cursor:pointer
+}
 .btn:hover{filter:brightness(1.08)}
-.btn:disabled{opacity:.55;
-cursor:wait}
-.btn.light{background:white;
-color:#163451;
-border:1px solid var(--line)}
-.top .btn.light{background:#ffffff12;
-color:white;
-border-color:#ffffff55}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn.light{background:white;color:#163451;border:1px solid var(--line)}
+.top .btn.light{background:#ffffff12;color:white;border-color:#ffffff55}
 .btn.green{background:var(--green)}
-.btn.red{background:#fff;
-color:var(--red);
-border:1px solid #f1caca}
-.btn.small{padding:6px 10px;
-font-size:12px}
-.card{background:white;
-border:1px solid var(--line);
-border-radius:14px;
-margin-bottom:16px;
-overflow:hidden}
-.cardhead{padding:14px 17px;
-border-bottom:1px solid #edf0f4;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-flex-wrap:wrap}
-.cardhead h2,.cardhead h3{font-size:15px;
-margin:0;
-color:var(--navy)}
+.btn.red{background:#fff;color:var(--red);border:1px solid #f1caca}
+.btn.small{padding:6px 10px;font-size:12px}
+.card{
+  background:white;border:1px solid var(--line);
+  border-radius:14px;margin-bottom:16px;overflow:hidden
+}
+.cardhead{
+  padding:14px 17px;border-bottom:1px solid #edf0f4;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;flex-wrap:wrap
+}
+.cardhead h2,.cardhead h3{font-size:15px;margin:0;color:var(--navy)}
 .cardbody{padding:17px}
-.muted{color:var(--muted);
-font-size:12px}
-.grid{display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:13px;
-align-items:end}
+.muted{color:var(--muted);font-size:12px}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:13px;align-items:end
+}
 .field{margin-bottom:13px}
-label{display:block;
-font-size:11px;
-text-transform:uppercase;
-letter-spacing:.5px;
-font-weight:700;
-color:#43536a;
-margin-bottom:5px}
-input,select,textarea{width:100%;
-border:1px solid #d5deea;
-border-radius:9px;
-padding:10px 11px;
-font:14px Inter;
-color:#17283d;
-background:white}
-textarea{resize:vertical;
-min-height:105px}
-input:focus,select:focus,textarea:focus{outline:2px solid #c9e0ff;
-border-color:var(--blue)}
-.stats{display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:12px;
-margin-bottom:16px}
-.stat{background:white;
-border:1px solid var(--line);
-border-left:4px solid var(--blue);
-border-radius:12px;
-padding:13px 15px}
+label{
+  display:block;font-size:11px;text-transform:uppercase;
+  letter-spacing:.5px;font-weight:700;color:#43536a;margin-bottom:5px
+}
+input,select,textarea{
+  width:100%;border:1px solid #d5deea;border-radius:9px;
+  padding:10px 11px;font:14px Inter;color:#17283d;background:white
+}
+textarea{resize:vertical;min-height:105px}
+input:focus,select:focus,textarea:focus{
+  outline:2px solid #c9e0ff;border-color:var(--blue)
+}
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;margin-bottom:16px
+}
+.stat{
+  background:white;border:1px solid var(--line);
+  border-left:4px solid var(--blue);border-radius:12px;padding:13px 15px
+}
 .stat.green{border-left-color:var(--green)}
 .stat.red{border-left-color:var(--red)}
-.stat small{display:block;
-color:var(--muted);
-font-size:10px;
-text-transform:uppercase;
-font-weight:700;
-letter-spacing:.5px}
-.stat strong{display:block;
-font-size:22px;
-color:var(--navy);
-margin-top:4px}
+.stat small{
+  display:block;color:var(--muted);font-size:10px;
+  text-transform:uppercase;font-weight:700;letter-spacing:.5px
+}
+.stat strong{display:block;font-size:22px;color:var(--navy);margin-top:4px}
 .tablewrap{overflow:auto}
-table{width:100%;
-border-collapse:collapse;
-min-width:650px}
-th{text-align:left;
-background:#f7f9fc;
-color:#66758a;
-text-transform:uppercase;
-font-size:10px;
-letter-spacing:.5px;
-padding:11px 13px;
-white-space:nowrap}
-td{padding:12px 13px;
-border-top:1px solid #edf1f5;
-vertical-align:middle}
-.teachername{font-weight:700;
-color:var(--navy)}
-.sub{font-size:11px;
-color:var(--muted)}
-.positive{color:var(--green);
-font-weight:700}
-.negative{color:var(--red);
-font-weight:700}
-.empty{text-align:center;
-padding:35px 15px;
-color:var(--muted)}
-.monthbar{display:flex;
-align-items:center;
-gap:9px;
-flex-wrap:wrap;
-margin-bottom:14px}
-.monthbar strong{min-width:145px;
-text-align:center;
-color:var(--navy)}
-.calendar{display:grid;
-grid-template-columns:repeat(7,minmax(0,1fr));
-gap:6px}
-.dow{text-align:center;
-padding:5px;
-color:var(--muted);
-font-size:10px;
-font-weight:700;
-text-transform:uppercase}
-.day{position:relative;
-min-height:72px;
-background:white;
-border:1px solid var(--line);
-border-radius:9px;
-padding:7px;
-cursor:default}
-.day.blank{background:transparent;
-border:0}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th{
+  text-align:left;background:#f7f9fc;color:#66758a;
+  text-transform:uppercase;font-size:10px;letter-spacing:.5px;
+  padding:11px 13px;white-space:nowrap
+}
+td{padding:12px 13px;border-top:1px solid #edf1f5;vertical-align:middle}
+.teachername{font-weight:700;color:var(--navy)}
+.sub{font-size:11px;color:var(--muted)}
+.positive{color:var(--green);font-weight:700}
+.negative{color:var(--red);font-weight:700}
+.empty{text-align:center;padding:35px 15px;color:var(--muted)}
+.monthbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.monthbar strong{min-width:145px;text-align:center;color:var(--navy)}
+.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.dow{
+  text-align:center;padding:5px;color:var(--muted);
+  font-size:10px;font-weight:700;text-transform:uppercase
+}
+.day{
+  position:relative;min-height:72px;background:white;
+  border:1px solid var(--line);border-radius:9px;padding:7px;cursor:default
+}
+.day.blank{background:transparent;border:0}
 .day.weekend{background:#fafbfd}
-.day.holiday{background:var(--amber);
-border-color:#f1d78d}
-.day.has{background:#e9f8ef;
-border-color:#a9dfbd}
+.day.holiday{background:var(--amber);border-color:#f1d78d}
+.day.has{background:#e9f8ef;border-color:#a9dfbd}
 .day.selectable{cursor:pointer}
 .day.selectable:hover{border-color:var(--blue)}
-.day.selected{outline:2px solid var(--blue);
-background:#e6f1ff}
+.day.selected{outline:2px solid var(--blue);background:#e6f1ff}
 .daynum{font-weight:700}
-.daymeta{font-size:10px;
-color:var(--green);
-font-weight:700;
-position:absolute;
-bottom:6px;
-right:7px}
-.holidayname{display:block;
-font-size:9px;
-color:#946200}
-.monthtools{display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-bottom:12px}
-.bottomsave{position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:white;
-border-top:1px solid var(--line);
-padding:12px 18px;
-box-shadow:0 -5px 20px #10243b12;
-z-index:8}
-.bottomsave>div{max-width:1180px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
-flex-wrap:wrap}
-.pill{display:inline-block;
-padding:5px 9px;
-border-radius:30px;
-background:#fff4d7;
-color:#855b00;
-font-size:11px;
-font-weight:700}
-.pill.green{background:#e8f7ed;
-color:#167442}
-.pill.red{background:#ffeded;
-color:#b52b2b}
-.toast{position:fixed;
-top:16px;
-left:50%;
-transform:translateX(-50%);
-z-index:30;
-background:#10243b;
-color:white;
-padding:11px 16px;
-border-radius:9px;
-display:none;
-max-width:90%;
-box-shadow:0 8px 25px #0002}
-.toast.error{background:#b52b2b}
-.authwrap{max-width:480px;
-margin:40px auto}
-.authbrand{text-align:center;
-margin-bottom:18px}
-.authbrand .logo{margin:0 auto 10px;
-background:var(--blue);
-color:white}
-.authswitch{display:flex;
-border:1px solid var(--line);
-padding:3px;
-border-radius:10px;
-margin-bottom:17px}
-.authswitch button{flex:1;
-border:0;
-background:white;
-border-radius:7px;
-padding:9px;
-font:600 13px Inter;
-color:var(--muted);
-cursor:pointer}
-.authswitch button.active{background:var(--blue);
-color:white}
-.notice{background:#eef6ff;
-border:1px solid #d5e8ff;
-color:#214e7a;
-padding:11px;
-border-radius:9px;
-font-size:12px;
-margin-top:13px}
-.rowactions{display:flex;
-gap:7px;
-flex-wrap:wrap}
-.hide{display:none!important}
-@media(max-width:600px){.topin{padding-top:12px;
-padding-bottom:12px}
-.day{min-height:55px;
-padding:5px}
-.daymeta{font-size:9px}
-.calendar{gap:3px}
-.wrap.main{padding-left:11px;
-padding-right:11px}
-.stat strong{font-size:19px}
+.daymeta{
+  font-size:10px;color:var(--green);font-weight:700;
+  position:absolute;bottom:6px;right:7px
 }
-
-
-</style></head>
+.holidayname{display:block;font-size:9px;color:#946200}
+.monthtools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.bottomsave{
+  position:fixed;bottom:0;left:0;right:0;background:white;
+  border-top:1px solid var(--line);padding:12px 18px;
+  box-shadow:0 -5px 20px #10243b12;z-index:8
+}
+.bottomsave>div{
+  max-width:1180px;margin:auto;display:flex;
+  align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap
+}
+.pill{
+  display:inline-block;padding:5px 9px;border-radius:30px;
+  background:#fff4d7;color:#855b00;font-size:11px;font-weight:700
+}
+.pill.green{background:#e8f7ed;color:#167442}
+.pill.red{background:#ffeded;color:#b52b2b}
+.toast{
+  position:fixed;top:16px;left:50%;transform:translateX(-50%);
+  z-index:30;background:#10243b;color:white;padding:11px 16px;
+  border-radius:9px;display:none;max-width:90%;box-shadow:0 8px 25px #0002
+}
+.toast.error{background:#b52b2b}
+.authwrap{max-width:480px;margin:40px auto}
+.authbrand{text-align:center;margin-bottom:18px}
+.authbrand .logo{margin:0 auto 10px;background:var(--blue);color:white}
+.authswitch{
+  display:flex;border:1px solid var(--line);padding:3px;
+  border-radius:10px;margin-bottom:17px
+}
+.authswitch button{
+  flex:1;border:0;background:white;border-radius:7px;
+  padding:9px;font:600 13px Inter;color:var(--muted);cursor:pointer
+}
+.authswitch button.active{background:var(--blue);color:white}
+.notice{
+  background:#eef6ff;border:1px solid #d5e8ff;color:#214e7a;
+  padding:11px;border-radius:9px;font-size:12px;margin-top:13px
+}
+.rowactions{display:flex;gap:7px;flex-wrap:wrap}
+.hide{display:none!important}
+@media(max-width:600px){
+  .topin{padding-top:12px;padding-bottom:12px}
+  .day{min-height:55px;padding:5px}
+  .daymeta{font-size:9px}
+  .calendar{gap:3px}
+  .wrap.main{padding-left:11px;padding-right:11px}
+  .stat strong{font-size:19px}
+}
+</style>
+</head>
 <body>
-<header class="top"><div class="topin"><div class="brand"><div class="logo">GT</div><div><strong>Teacher Lesson Dashboard</strong><small>Greater Tomorrow Model College</small></div></div><div class="topactions"><span class="role" id="roleBadge">Not signed in</span><button class="btn light small" id="refreshBtn">↻ Refresh</button><button class="btn light small" id="authAction">Sign in</button></div></div></header>
-<nav id="nav" class="hide"><div class="wrap" id="tabs"></div></nav><main class="wrap main" id="main"><div class="empty">Loading dashboard…</div></main><div id="savebar"></div><div class="toast" id="toast"></div>
+<header class="top">
+  <div class="topin">
+    <div class="brand">
+      <div class="logo">GT</div>
+      <div>
+        <strong>Teacher Lesson Dashboard</strong>
+        <small>Greater Tomorrow Model College</small>
+      </div>
+    </div>
+    <div class="topactions">
+      <span class="role" id="roleBadge">Not signed in</span>
+      <button class="btn light small" id="refreshBtn">↻ Refresh</button>
+      <button class="btn light small" id="authAction">Sign in</button>
+    </div>
+  </div>
+</header>
+<nav id="nav" class="hide"><div class="wrap" id="tabs"></div></nav>
+<main class="wrap main" id="main">
+  <div class="empty">Loading dashboard…</div>
+</main>
+<div id="savebar"></div>
+<div class="toast" id="toast"></div>
 <script>
 const API='https://script.google.com/macros/s/AKfycbxge16jgrxp7J_Px2cKzBnPMktqlVt4_VKFzoKjcbEiRIrNXpZd6QCJOtwRH_BCopYl/exec';
-const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const pad=n=>String(n).padStart(2,'0'), today=()=>{let d=new Date();
-return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}, parseDate=s=>{let [y,m,d]=s.split('-').map(Number);
-return new Date(y,m-1,d)};
-const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-const S={token:sessionStorage.getItem('gtmcToken')||'',user:JSON.parse(sessionStorage.getItem('gtmcUser')||'null'),data:null,tab:'overview',month:today().slice(0,7),teacherKey:'',payKey:'',selected:new Map(),authMode:'login'};
-const admin=()=>S.user?.role==='admin', D=()=>S.data, key=t=>[t.teacher,t.subject,t.class].join('|'), currentTeacher=()=>D()?.teachers.find(t=>key(t)===S.teacherKey)||D()?.teachers[0], payTeacher=()=>D()?.teachers.find(t=>key(t)===S.payKey)||D()?.teachers[0];
-const money=n=>(D()?.rates?.currency||'₦')+Math.round(Number(n)||0).toLocaleString('en-NG'), weekend=s=>[0,6].includes(parseDate(s).getDay()), holiday=s=>D()?.holidays?.find(h=>h.date===s), rate=s=>(weekend(s)||holiday(s))?D().rates.weekend:D().rates.weekday;
-const earned=(t,m='')=>(t?.lessons||[]).filter(l=>!m||l.date.startsWith(m)).reduce((a,l)=>a+rate(l.date),0), paid=(t,m='')=>(D()?.payments||[]).filter(p=>p.teacher===t.teacher&&p.subject===t.subject&&p.class===t.class&&(!m||p.month===m)).reduce((a,p)=>a+Number(p.amount||0),0);
-let toastTimer;
-function toast(msg,error=false){let el=$('#toast');
-el.textContent=msg;
-el.className='toast'+(error?' error':'');
-el.style.display='block';
-clearTimeout(toastTimer);
-toastTimer=setTimeout(()=>el.style.display='none',3200)}
-async function api(action,p={}){let body={action,...p};
-if(S.token&&action!=='login'&&action!=='selfRegister')body.token=S.token;
-let r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)});
-let j=await r.json();
-if(!j.ok)throw Error(j.error||'Request failed');
-if(j.token){S.token=j.token;
-S.user=j.user;
-sessionStorage.setItem('gtmcToken',j.token);
-sessionStorage.setItem('gtmcUser',JSON.stringify(j.user))}if(j.user){S.user=j.user;
-sessionStorage.setItem('gtmcUser',JSON.stringify(j.user))}if(j.data)S.data=j.data;
-return j}
-async function load(){if(!S.token){authScreen();
-return}try{let j=await api('getDashboard');
-S.user=j.user;
-S.data=j.data;
-if(!S.teacherKey&&j.data.teachers[0])S.teacherKey=key(j.data.teachers[0]);
-if(!S.payKey&&j.data.teachers[0])S.payKey=key(j.data.teachers[0]);
-render()}catch(e){logout(false);
-authScreen(e.message)}}
-function logout(show=true){if(S.token)api('logout').catch(()=>{});
-S.token='';
-S.user=null;
-S.data=null;
-sessionStorage.removeItem('gtmcToken');
-sessionStorage.removeItem('gtmcUser');
-S.selected.clear();
-if(show)authScreen()}
-function authScreen(message=''){ $('#nav').classList.add('hide');
-$('#savebar').innerHTML='';
-$('#roleBadge').textContent='Not signed in';
-$('#authAction').textContent='Sign in';
-$('#main').innerHTML=`<div class="authwrap"><div class="authbrand"><div class="logo">GT</div><h2>GTMC Account Access</h2><p class="muted">Teacher Lesson Dashboard</p></div><div class="card"><div class="cardbody"><div class="authswitch"><button id="modeLogin" class="${S.authMode==='login'?'active':''}">Sign in</button><button id="modeRegister" class="${S.authMode==='register'?'active':''}">Create teacher account</button></div>${message?`<p class="negative" style="margin-bottom:12px">${esc(message)}</p>`:''}<form id="authForm"><div class="field"><label>Username</label><input name="username" required autocomplete="username" minlength="4"></div>${S.authMode==='register'?`<div class="field"><label>Full name as registered with the school</label><input name="teacherName" required></div>`:''}<div class="field"><label>Password</label><input name="password" type="password" required minlength="8" autocomplete="${S.authMode==='login'?'current-password':'new-password'}"></div><button class="btn" style="width:100%">${S.authMode==='login'?'Sign in':'Submit registration'}</button></form><div class="notice">Teacher self-registration requires administrator approval. If your account was created by the administrator, use the username and temporary password provided by the school.</div></div></div></div>`;
-$('#modeLogin').onclick=()=>{S.authMode='login';
-authScreen()};
-$('#modeRegister').onclick=()=>{S.authMode='register';
-authScreen()};
-$('#authForm').onsubmit=authSubmit}
-async function authSubmit(e){e.preventDefault();
-let f=new FormData(e.target);
-try{if(S.authMode==='login'){await api('login',{username:f.get('username'),password:f.get('password')});
-toast('Signed in successfully');
-await load()}else{let j=await api('selfRegister',{username:f.get('username'),password:f.get('password'),teacherName:f.get('teacherName')});
-S.authMode='login';
-authScreen(j.message||'Registration submitted. Wait for administrator approval.')}}catch(err){toast(err.message,true)}}
-function monthHeader(){let [y,m]=S.month.split('-').map(Number);
-return `<div class="monthbar"><button class="btn light small" data-action="month" data-value="-1">‹</button><strong>${months[m-1]} ${y}</strong><button class="btn light small" data-action="month" data-value="1">›</button><button class="btn light small" data-action="thismonth">This month</button></div>`}
-function overview(){let ts=D().teachers||[],m=S.month,lessons=ts.reduce((a,t)=>a+t.lessons.filter(l=>l.date.startsWith(m)).length,0),totalEarned=ts.reduce((a,t)=>a+earned(t,m),0),totalPaid=D().payments.filter(p=>p.month===m).reduce((a,p)=>a+p.amount,0);
-let own=ts.reduce((a,t)=>a+earned(t,m),0);
-let cards=admin()?`<div class="stat"><small>Lessons this month</small><strong>${lessons}</strong></div><div class="stat"><small>Earned this month</small><strong>${money(totalEarned)}</strong></div><div class="stat green"><small>Paid this month</small><strong>${money(totalPaid)}</strong></div><div class="stat red"><small>Outstanding · all time</small><strong>${money(ts.reduce((a,t)=>a+earned(t)-paid(t),0))}</strong></div>`:`<div class="stat"><small>My lessons this month</small><strong>${lessons}</strong></div><div class="stat green"><small>My earnings this month</small><strong>${money(own)}</strong></div>`;
-let rows=ts.map((t,i)=>`<tr><td><div class="teachername">${esc(t.teacher)}</div><div class="sub">${esc(t.subject)} · ${esc(t.class)}</div></td><td>${t.lessons.filter(l=>l.date.startsWith(m)).length}</td><td>${admin()||t.showAmount?money(earned(t,m)):'Hidden'}</td>${admin()?`<td>${money(paid(t,m))}</td><td class="${earned(t)-paid(t)>0?'negative':'positive'}">${money(earned(t)-paid(t))}</td>`:''}<td><button class="btn light small" data-action="openTeacher" data-value="${i}">View calendar</button></td></tr>`).join('');
-return monthHeader()+`<div class="stats">${cards}</div><div class="card"><div class="cardhead"><h3>${admin()?'Teacher lesson summary':'My lesson summary'}</h3>${admin()?'<button class="btn light small" data-action="export">Export CSV</button>':''}</div><div class="tablewrap"><table><thead><tr><th>Teacher / assignment</th><th>Lessons</th><th>Earned</th>${admin()?'<th>Paid</th><th>Balance</th>':''}<th></th></tr></thead><tbody>${rows}</tbody></table></div>${rows?'':'<div class="empty">No teacher assignments have been added yet.</div>'}</div>`}
-function calendar(){let ts=D().teachers||[];
-if(!ts.length)return '<div class="card empty">No teacher assignment is available yet. Contact the administrator.</div>';
-let t=currentTeacher(),[y,m]=S.month.split('-').map(Number),first=(new Date(y,m-1,1).getDay()+6)%7,days=new Date(y,m,0).getDate(),html=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="dow">${x}</div>`).join('')+'<div class="day blank"></div>'.repeat(first);
-for(let d=1;
-d<=days;
-d++){let ds=`${y}-${pad(m)}-${pad(d)}`,ls=t.lessons.filter(l=>l.date===ds),h=holiday(ds),n=S.selected.get(ds)||0,can=ls.length+n<D().rates.maxLessonsPerDay;
-html+=`<div class="day ${weekend(ds)?'weekend':''} ${h?'holiday':''} ${ls.length?'has':''} ${n?'selected':''} ${admin()&&can?'selectable':''}" ${admin()&&can?`data-action="pickDay" data-value="${ds}"`:''}><span class="daynum">${d}</span>${h?`<span class="holidayname">${esc(h.note||'Holiday')}</span>`:''}${ls.length?`<span class="daymeta">${ls.length} lesson(s) ${admin()?`<button class="btn red small" style="padding:1px 5px" data-action="deleteLesson" data-value="${ls[ls.length-1].rowIndex}">×</button>`:''}</span>`:''}${n?`<span class="daymeta">+${n} selected</span>`:''}</div>`}let amount=t.lessons.filter(l=>l.date.startsWith(S.month)).reduce((a,l)=>a+rate(l.date),0);
-return monthHeader()+`<div class="card"><div class="cardbody"><div class="field" style="max-width:520px"><label>${admin()?'Select teacher assignment':'Your assignment'}</label>${admin()?`<select id="teacherSelect">${ts.map(x=>`<option value="${esc(key(x))}" ${key(x)===key(t)?'selected':''}>${esc(x.teacher)} — ${esc(x.subject)} (${esc(x.class)})</option>`).join('')}</select>`:`<input disabled value="${esc(t.teacher)} — ${esc(t.subject)} (${esc(t.class)})">`}</div>${admin()?'<div class="monthtools"><button class="btn light small" data-action="weekdays">Select weekdays</button><button class="btn light small" data-action="clear">Clear selection</button><span class="muted">Select dates, then save lessons.</span></div>':''}<div class="calendar">${html}</div></div></div><div class="stats"><div class="stat"><small>Lessons this month</small><strong>${t.lessons.filter(l=>l.date.startsWith(S.month)).length}</strong></div><div class="stat green"><small>Earned this month</small><strong>${money(amount)}</strong></div><div class="stat"><small>Payment received · all time</small><strong>${money(paid(t))}</strong></div></div>`}
-function payments(){let ts=D().teachers||[];
-if(!ts.length)return '<div class="card empty">No payment information is available.</div>';
-if(!admin()){let rows=D().payments.map(p=>`<tr><td>${esc(p.date)}</td><td>${esc(p.subject)} · ${esc(p.class)}</td><td>${esc(p.month)}</td><td class="positive">${money(p.amount)}</td><td>${esc(p.note)}</td></tr>`).join('');
-return `<div class="stats"><div class="stat"><small>Total earned</small><strong>${money(ts.reduce((a,t)=>a+earned(t),0))}</strong></div><div class="stat green"><small>Total received</small><strong>${money(D().payments.reduce((a,p)=>a+p.amount,0))}</strong></div><div class="stat red"><small>Outstanding</small><strong>${money(ts.reduce((a,t)=>a+earned(t)-paid(t),0))}</strong></div></div><div class="card"><div class="cardhead"><h3>My payment history</h3></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Assignment</th><th>Month</th><th>Amount</th><th>Note</th></tr></thead><tbody>${rows}</tbody></table></div>${rows?'':'<div class="empty">No payments recorded yet.</div>'}</div>`}let t=payTeacher(),history=[...D().payments].reverse().map(p=>`<tr><td>${esc(p.date)}</td><td>${esc(p.teacher)}<div class="sub">${esc(p.subject)} · ${esc(p.class)}</div></td><td>${esc(p.month)}</td><td class="positive">${money(p.amount)}</td><td>${esc(p.note)}</td><td><button class="btn red small" data-action="deletePayment" data-value="${p.rowIndex}">Delete</button></td></tr>`).join('');
-return `<div class="card"><div class="cardhead"><h3>Record payment</h3></div><div class="cardbody"><form id="paymentForm"><div class="field"><label>Teacher assignment</label><select name="assignment">${ts.map(x=>`<option value="${esc(key(x))}" ${key(x)===key(t)?'selected':''}>${esc(x.teacher)} — ${esc(x.subject)} (${esc(x.class)})</option>`).join('')}</select></div><div class="stats"><div class="stat"><small>Earned</small><strong id="earnedValue">${money(earned(t))}</strong></div><div class="stat green"><small>Paid</small><strong id="paidValue">${money(paid(t))}</strong></div><div class="stat red"><small>Balance</small><strong id="balanceValue">${money(earned(t)-paid(t))}</strong></div></div><div class="grid"><div class="field"><label>Amount</label><input name="amount" type="number" min="1" required value="${Math.max(0,earned(t)-paid(t))}"></div><div class="field"><label>Date paid</label><input name="date" type="date" value="${today()}" required></div><div class="field"><label>For month</label><input name="month" type="month" value="${S.month}" required></div><div class="field"><label>Note</label><input name="note" placeholder="Optional note"></div></div><button class="btn green">Save payment</button></form></div></div><div class="card"><div class="cardhead"><h3>Payment records</h3></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Teacher</th><th>Month</th><th>Amount</th><th>Note</th><th></th></tr></thead><tbody>${history}</tbody></table></div>${history?'':'<div class="empty">No payments yet.</div>'}</div>`}
-function teachers(){let ts=D().teachers||[],rows=ts.map((t,i)=>`<tr><td><b>${esc(t.teacher)}</b></td><td>${esc(t.subject)}</td><td>${esc(t.class)}</td><td>${t.lessons.length}</td><td><button class="btn ${t.showAmount?'green':'light'} small" data-action="visibility" data-value="${i}">${t.showAmount?'Public amount on':'Public amount off'}</button></td><td><button class="btn red small" data-action="deleteTeacher" data-value="${i}">Delete</button></td></tr>`).join('');
-return `<div class="card"><div class="cardhead"><h3>Add teacher assignment</h3></div><div class="cardbody"><form id="teacherForm"><div class="grid"><div class="field"><label>Teacher full name</label><input name="teacher" required></div><div class="field"><label>Subject</label><input name="subject" required></div><div class="field"><label>Class</label><input name="class" required placeholder="e.g. JSS1A"></div><div><button class="btn">Add assignment</button></div></div></form><p class="muted">Add one record for each teacher, subject and class combination.</p></div></div><div class="card"><div class="cardhead"><h3>Teacher assignments (${ts.length})</h3></div><div class="tablewrap"><table><thead><tr><th>Teacher</th><th>Subject</th><th>Class</th><th>Lessons</th><th>Public earnings</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>${rows?'':'<div class="empty">No teacher assignments yet.</div>'}</div>`}
-function accounts(){let rows=(D().accounts||[]).map(a=>`<tr><td><b>${esc(a.username)}</b></td><td>${esc(a.teacherName||'—')}</td><td>${esc(a.role)}</td><td><span class="pill ${a.status==='active'?'green':a.status==='pending'?'':'red'}">${esc(a.status)}</span></td><td>${a.role==='teacher'&&a.status==='pending'?`<button class="btn green small" data-action="approve" data-value="${esc(a.id)}">Approve</button>`:''}${a.role==='teacher'&&a.status==='active'?`<button class="btn red small" data-action="deactivate" data-value="${esc(a.id)}">Deactivate</button>`:''}</td></tr>`).join('');
-return `<div class="card"><div class="cardhead"><h3>Create teacher login</h3></div><div class="cardbody"><form id="accountForm"><div class="grid"><div class="field"><label>Teacher's full name</label><input name="teacherName" required></div><div class="field"><label>Username</label><input name="username" required minlength="4"></div><div class="field"><label>Temporary password (min. 8 characters)</label><input name="password" type="password" minlength="8" required></div><div><button class="btn">Create account</button></div></div></form></div></div><div class="card"><div class="cardhead"><h3>Accounts and registration approvals</h3></div><div class="tablewrap"><table><thead><tr><th>Username</th><th>Teacher</th><th>Role</th><th>Status</th><th>Action</th></tr></thead><tbody>${rows}</tbody></table></div>${rows?'':'<div class="empty">No accounts found.</div>'}</div>`}
-function complaints(){let list=[...(D().complaints||[])].reverse(),rows=list.map(c=>`<div class="card"><div class="cardbody"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><b>${esc(c.title)}</b><span class="pill ${c.status==='Resolved'?'green':c.status==='Under Review'?'':'red'}">${esc(c.status)}</span></div><p class="muted" style="margin:5px 0 10px">${esc(c.category)} · ${esc(c.submittedBy)} · ${esc(c.createdAt)}</p><p>${esc(c.description)}</p>${c.adminResponse?`<div class="notice"><b>Administrator response</b><br>${esc(c.adminResponse)}</div>`:''}${admin()?`<form class="complaintUpdate" data-id="${esc(c.id)}" style="margin-top:13px"><div class="grid"><div class="field"><label>Status</label><select name="status">${['Pending','Under Review','Resolved'].map(s=>`<option ${s===c.status?'selected':''}>${s}</option>`).join('')}</select></div><div class="field"><label>Response</label><input name="response" value="${esc(c.adminResponse)}" placeholder="Response to the complainant"></div><div><button class="btn small">Update</button></div></div></form>`:''}</div></div>`).join('');
-return `<div class="card"><div class="cardhead"><h3>Submit a complaint</h3></div><div class="cardbody"><form id="complaintForm"><div class="grid"><div class="field"><label>Category</label><select name="category" required><option value="">Select category</option><option>Lesson record</option><option>Payment</option><option>Account access</option><option>Technical problem</option><option>Staff matter</option><option>Other</option></select></div><div class="field"><label>Title</label><input name="title" maxlength="120" required></div></div><div class="field"><label>Complaint details</label><textarea name="description" maxlength="5000" required></textarea></div><button class="btn">Submit complaint</button></form></div></div><div class="cardhead" style="padding-left:2px;border:0"><h3>${admin()?'All complaints':'My complaints'}</h3></div>${rows||'<div class="card empty">No complaints submitted yet.</div>'}`}
-function profile(){return `<div class="card"><div class="cardhead"><h3>My account</h3></div><div class="cardbody"><p><b>Username:</b> ${esc(S.user.username)}</p><p><b>Account type:</b> ${esc(S.user.role)}</p><p><b>Name:</b> ${esc(S.user.teacherName||'Administrator')}</p><p><b>Status:</b> ${esc(S.user.status)}</p></div></div><div class="card"><div class="cardhead"><h3>Change password</h3></div><div class="cardbody"><form id="passwordForm"><div class="grid"><div class="field"><label>Current password</label><input name="oldPassword" type="password" required></div><div class="field"><label>New password</label><input name="newPassword" type="password" minlength="8" required></div><div><button class="btn">Change password</button></div></div></form></div></div>`}
-function settings(){let r=D().rates,hs=D().holidays.map(h=>`<span class="pill">${esc(h.date)} ${esc(h.note)} <button class="btn red small" data-action="deleteHoliday" data-value="${h.rowIndex}">×</button></span>`).join('');
-return `<div class="card"><div class="cardhead"><h3>Lesson rates and settings</h3></div><div class="cardbody"><form id="ratesForm"><div class="grid"><div class="field"><label>Weekday rate</label><input name="weekday" type="number" min="0" value="${r.weekday}" required></div><div class="field"><label>Weekend / holiday rate</label><input name="weekend" type="number" min="0" value="${r.weekend}" required></div><div class="field"><label>Maximum lessons per day</label><select name="max"><option value="1" ${r.maxLessonsPerDay===1?'selected':''}>1</option><option value="2" ${r.maxLessonsPerDay===2?'selected':''}>2</option></select></div><div class="field"><label>Currency</label><input name="currency" maxlength="3" value="${esc(r.currency)}" required></div><div><button class="btn">Save settings</button></div></div></form></div></div><div class="card"><div class="cardhead"><h3>School holidays</h3></div><div class="cardbody"><form id="holidayForm"><div class="grid"><div class="field"><label>Date</label><input name="date" type="date" required></div><div class="field"><label>Holiday name / note</label><input name="note"></div><div><button class="btn">Add holiday</button></div></div></form><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px">${hs||'<span class="muted">No holidays entered.</span>'}</div></div></div>`}
-function render(){if(!D())return;
-$('#nav').classList.remove('hide');
-$('#roleBadge').textContent=admin()?'Administrator':`Teacher · ${S.user.teacherName}`;
-$('#authAction').textContent='Sign out';
-let tabs=[['overview','Overview'],['calendar',admin()?'Record Lessons':'My Calendar'],['payments',admin()?'Payments':'My Payments'],['complaints','Complaints'],['profile','My Account']];
-if(admin())tabs.push(['teachers','Teachers'],['accounts','Accounts'],['settings','Settings']);
-if(!tabs.some(t=>t[0]===S.tab))S.tab='overview';
-$('#tabs').innerHTML=tabs.map(([id,label])=>`<button class="${S.tab===id?'active':''}" data-tab="${id}">${label}</button>`).join('');
-let views={overview,calendar,payments,complaints,profile,teachers,accounts,settings};
-$('#main').innerHTML=views[S.tab]();
-$('#savebar').innerHTML=admin()&&S.tab==='calendar'&&S.selected.size?`<div class="bottomsave"><div><span><b>${S.selected.size}</b> date(s) selected · ${[...S.selected].reduce((a,[d,n])=>a+n,0)} lesson(s)</span><div class="rowactions"><button class="btn light" data-action="clear">Clear</button><button class="btn green" data-action="saveLessons">Save lessons</button></div></div></div>`:'';
-bindForms()}
-function bindForms(){let f=$('#teacherForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f);
-await perform('registerTeacher',{teacher:x.get('teacher'),subject:x.get('subject'),class:x.get('class')},'Teacher assignment added');
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const today=()=>{
+  let d=new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
 };
-f=$('#accountForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f);
-await perform('createTeacherAccount',{teacherName:x.get('teacherName'),username:x.get('username'),password:x.get('password')},'Teacher account created')};
-f=$('#paymentForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f),[teacher,subject,cls]=x.get('assignment').split('|');
-await perform('addPayment',{teacher,subject,class:cls,amount:x.get('amount'),date:x.get('date'),month:x.get('month'),note:x.get('note')},'Payment saved')};
-f=$('#ratesForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f);
-await perform('updateRates',{rateWeekday:x.get('weekday'),rateWeekend:x.get('weekend'),maxLessonsPerDay:x.get('max'),currency:x.get('currency')},'Settings saved')};
-f=$('#holidayForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f);
-await perform('addHoliday',{date:x.get('date'),note:x.get('note')},'Holiday added')};
-f=$('#complaintForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f);
-await perform('submitComplaint',{category:x.get('category'),title:x.get('title'),description:x.get('description')},'Complaint submitted')};
-f=$('#passwordForm');
-if(f)f.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(f);
-await perform('changePassword',{oldPassword:x.get('oldPassword'),newPassword:x.get('newPassword')},'Password changed')};
-document.querySelectorAll('.complaintUpdate').forEach(form=>form.onsubmit=async e=>{e.preventDefault();
-let x=new FormData(form);
-await perform('updateComplaint',{complaintId:form.dataset.id,status:x.get('status'),adminResponse:x.get('response')},'Complaint updated')});
-let sel=$('#teacherSelect');
-if(sel)sel.onchange=()=>{S.teacherKey=sel.value;
-S.selected.clear();
-render()}}
-async function perform(action,p,msg){try{await api(action,p);
-toast(msg);
-render()}catch(e){toast(e.message,true)}}
-async function saveLessons(){let t=currentTeacher();
-if(!t||!S.selected.size)return;
-let jobs=[];
-S.selected.forEach((n,d)=>{for(let i=0;
-i<n;
-i++)jobs.push(d)});
-for(let i=0;
-i<jobs.length;
-i++){try{await api('addLesson',{teacher:t.teacher,subject:t.subject,class:t.class,date:jobs[i],dayType:weekend(jobs[i])||holiday(jobs[i])?'weekend':'weekday'})}catch(e){toast(`Stopped at ${i+1}/${jobs.length}: ${e.message}`,true);
-S.selected.clear();
-render();
-return}}S.selected.clear();
-toast(`${jobs.length} lesson(s) saved`);
-render()}
-function exportCsv(){let rows=[['Date','Teacher','Subject','Class','Type','Rate']];
-D().teachers.forEach(t=>t.lessons.filter(l=>l.date.startsWith(S.month)).forEach(l=>rows.push([l.date,t.teacher,t.subject,t.class,holiday(l.date)?'holiday':weekend(l.date)?'weekend':'weekday',rate(l.date)])));
-let csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n'),a=document.createElement('a');
-a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));
-a.download=`GTMC_Lessons_${S.month}.csv`;
-a.click();
-URL.revokeObjectURL(a.href)}
-$('#tabs').addEventListener('click',e=>{let b=e.target.closest('[data-tab]');
-if(b){S.tab=b.dataset.tab;
-S.selected.clear();
-render()}});
-document.addEventListener('click',async e=>{let b=e.target.closest('[data-action]');
-if(!b)return;
-let a=b.dataset.action,v=b.dataset.value;
-if(a==='month'){let [y,m]=S.month.split('-').map(Number);
-m+=Number(v);
-if(m<1){m=12;
-y--}if(m>12){m=1;
-y++}S.month=`${y}-${pad(m)}`;
-render()}else if(a==='thismonth'){S.month=today().slice(0,7);
-render()}else if(a==='openTeacher'){S.teacherKey=key(D().teachers[Number(v)]);
-S.tab='calendar';
-render()}else if(a==='pickDay'){let t=currentTeacher(),used=t.lessons.filter(l=>l.date===v).length,cur=S.selected.get(v)||0;
-if(used+cur>=D().rates.maxLessonsPerDay)S.selected.delete(v);
-else S.selected.set(v,cur+1);
-render()}else if(a==='clear'){S.selected.clear();
-render()}else if(a==='weekdays'){let [y,m]=S.month.split('-').map(Number),t=currentTeacher();
-for(let d=1;
-d<=new Date(y,m,0).getDate();
-d++){let ds=`${y}-${pad(m)}-${pad(d)}`,used=t.lessons.filter(l=>l.date===ds).length;
-if(!weekend(ds)&&!holiday(ds)&&used<D().rates.maxLessonsPerDay)S.selected.set(ds,1)}render()}else if(a==='saveLessons')saveLessons();
-else if(a==='deleteLesson'){if(confirm('Delete this lesson?'))perform('deleteLesson',{rowIndex:Number(v)},'Lesson deleted')}else if(a==='deletePayment'){if(confirm('Delete this payment record?'))perform('deletePayment',{rowIndex:Number(v)},'Payment deleted')}else if(a==='deleteHoliday'){if(confirm('Delete this holiday?'))perform('deleteHoliday',{rowIndex:Number(v)},'Holiday deleted')}else if(a==='visibility'){let t=D().teachers[Number(v)];
-perform('toggleVisibility',{teacher:t.teacher,subject:t.subject,class:t.class,show:!t.showAmount},'Visibility updated')}else if(a==='deleteTeacher'){let t=D().teachers[Number(v)];
-if(confirm(`Delete ${t.teacher} — ${t.subject} (${t.class}) and its lesson records?`))perform('deleteTeacher',{teacher:t.teacher,subject:t.subject,class:t.class},'Assignment deleted')}else if(a==='approve')perform('approveAccount',{userId:v},'Account approved');
-else if(a==='deactivate'){if(confirm('Deactivate this teacher account?'))perform('deactivateAccount',{userId:v},'Account deactivated')}else if(a==='export')exportCsv()});
+const parseDate=s=>{
+  let [y,m,d]=s.split('-').map(Number);
+  return new Date(y,m-1,d);
+};
+const months=[
+  'January','February','March','April','May','June',
+  'July','August','September','October','November','December'
+];
+const S={
+  token:sessionStorage.getItem('gtmcToken')||'',
+  user:JSON.parse(sessionStorage.getItem('gtmcUser')||'null'),
+  data:null,
+  tab:'overview',
+  month:today().slice(0,7),
+  teacherKey:'',
+  payKey:'',
+  selected:new Map(),
+  authMode:'login'
+};
+const admin=()=>S.user?.role==='admin';
+const D=()=>S.data;
+const key=t=>[t.teacher,t.subject,t.class].join('|');
+const currentTeacher=()=>D()?.teachers.find(t=>key(t)===S.teacherKey)||D()?.teachers[0];
+const payTeacher=()=>D()?.teachers.find(t=>key(t)===S.payKey)||D()?.teachers[0];
+const money=n=>(D()?.rates?.currency||'₦')+
+  Math.round(Number(n)||0).toLocaleString('en-NG');
+const weekend=s=>[0,6].includes(parseDate(s).getDay());
+const holiday=s=>D()?.holidays?.find(h=>h.date===s);
+const rate=s=>(weekend(s)||holiday(s))?D().rates.weekend:D().rates.weekday;
+const earned=(t,m='')=>(t?.lessons||[])
+  .filter(l=>!m||l.date.startsWith(m))
+  .reduce((a,l)=>a+rate(l.date),0);
+const paid=(t,m='')=>(D()?.payments||[])
+  .filter(p=>p.teacher===t.teacher&&p.subject===t.subject&&
+    p.class===t.class&&(!m||p.month===m))
+  .reduce((a,p)=>a+Number(p.amount||0),0);
+
+let toastTimer;
+function toast(msg,error=false){
+  let el=$('#toast');
+  el.textContent=msg;
+  el.className='toast'+(error?' error':'');
+  el.style.display='block';
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.style.display='none',3200);
+}
+
+async function api(action,p={}){
+  let body={action,...p};
+  if(S.token&&action!=='login'&&action!=='selfRegister'){
+    body.token=S.token;
+  }
+
+  let r=await fetch(API,{
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(body)
+  });
+
+  let j=await r.json();
+  if(!j.ok)throw Error(j.error||'Request failed');
+
+  if(j.token){
+    S.token=j.token;
+    S.user=j.user;
+    sessionStorage.setItem('gtmcToken',j.token);
+    sessionStorage.setItem('gtmcUser',JSON.stringify(j.user));
+  }
+
+  if(j.user){
+    S.user=j.user;
+    sessionStorage.setItem('gtmcUser',JSON.stringify(j.user));
+  }
+
+  if(j.data)S.data=j.data;
+  return j;
+}
+
+async function load(){
+  if(!S.token){
+    authScreen();
+    return;
+  }
+
+  try{
+    let j=await api('getDashboard');
+    S.user=j.user;
+    S.data=j.data;
+
+    if(!S.teacherKey&&j.data.teachers[0]){
+      S.teacherKey=key(j.data.teachers[0]);
+    }
+    if(!S.payKey&&j.data.teachers[0]){
+      S.payKey=key(j.data.teachers[0]);
+    }
+
+    render();
+  }catch(e){
+    logout(false);
+    authScreen(e.message);
+  }
+}
+
+function logout(show=true){
+  if(S.token)api('logout').catch(()=>{});
+  S.token='';
+  S.user=null;
+  S.data=null;
+  sessionStorage.removeItem('gtmcToken');
+  sessionStorage.removeItem('gtmcUser');
+  S.selected.clear();
+  if(show)authScreen();
+}
+
+function authScreen(message=''){
+  $('#nav').classList.add('hide');
+  $('#savebar').innerHTML='';
+  $('#roleBadge').textContent='Not signed in';
+  $('#authAction').textContent='Sign in';
+
+  $('#main').innerHTML=`
+    <div class="authwrap">
+      <div class="authbrand">
+        <div class="logo">GT</div>
+        <h2>GTMC Account Access</h2>
+        <p class="muted">Teacher Lesson Dashboard</p>
+      </div>
+      <div class="card">
+        <div class="cardbody">
+          <div class="authswitch">
+            <button id="modeLogin" class="${S.authMode==='login'?'active':''}">Sign in</button>
+            <button id="modeRegister" class="${S.authMode==='register'?'active':''}">Create teacher account</button>
+          </div>
+          ${message?`<p class="negative" style="margin-bottom:12px">${esc(message)}</p>`:''}
+          <form id="authForm">
+            <div class="field">
+              <label>Username</label>
+              <input name="username" required autocomplete="username" minlength="4">
+            </div>
+            ${S.authMode==='register'?`
+              <div class="field">
+                <label>Full name as registered with the school</label>
+                <input name="teacherName" required>
+              </div>`:''}
+            <div class="field">
+              <label>Password</label>
+              <input name="password" type="password" required minlength="8"
+                autocomplete="${S.authMode==='login'?'current-password':'new-password'}">
+            </div>
+            <button class="btn" style="width:100%">
+              ${S.authMode==='login'?'Sign in':'Submit registration'}
+            </button>
+          </form>
+          <div class="notice">
+            Teacher self-registration requires administrator approval.
+            If your account was created by the administrator, use the
+            username and temporary password provided by the school.
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  $('#modeLogin').onclick=()=>{
+    S.authMode='login';
+    authScreen();
+  };
+
+  $('#modeRegister').onclick=()=>{
+    S.authMode='register';
+    authScreen();
+  };
+
+  $('#authForm').onsubmit=authSubmit;
+}
+
+async function authSubmit(e){
+  e.preventDefault();
+  let f=new FormData(e.target);
+
+  try{
+    if(S.authMode==='login'){
+      await api('login',{
+        username:f.get('username'),
+        password:f.get('password')
+      });
+      toast('Signed in successfully');
+      await load();
+    }else{
+      let j=await api('selfRegister',{
+        username:f.get('username'),
+        password:f.get('password'),
+        teacherName:f.get('teacherName')
+      });
+      S.authMode='login';
+      authScreen(j.message||'Registration submitted. Wait for administrator approval.');
+    }
+  }catch(err){
+    toast(err.message,true);
+  }
+}function monthHeader(){
+  let [y,m]=S.month.split('-').map(Number);
+  return `
+    <div class="monthbar">
+      <button class="btn light small" data-action="month" data-value="-1">‹</button>
+      <strong>${months[m-1]} ${y}</strong>
+      <button class="btn light small" data-action="month" data-value="1">›</button>
+      <button class="btn light small" data-action="thismonth">This month</button>
+    </div>`;
+}
+
+function overview(){
+  let ts=D().teachers||[];
+  let m=S.month;
+
+  let lessons=ts.reduce(
+    (a,t)=>a+t.lessons.filter(l=>l.date.startsWith(m)).length,0
+  );
+
+  let totalEarned=ts.reduce((a,t)=>a+earned(t,m),0);
+  let totalPaid=D().payments.filter(p=>p.month===m)
+    .reduce((a,p)=>a+p.amount,0);
+
+  let own=ts.reduce((a,t)=>a+earned(t,m),0);
+
+  let cards=admin()
+    ? `
+      <div class="stat">
+        <small>Lessons this month</small>
+        <strong>${lessons}</strong>
+      </div>
+      <div class="stat">
+        <small>Earned this month</small>
+        <strong>${money(totalEarned)}</strong>
+      </div>
+      <div class="stat green">
+        <small>Paid this month</small>
+        <strong>${money(totalPaid)}</strong>
+      </div>
+      <div class="stat red">
+        <small>Outstanding · all time</small>
+        <strong>${money(ts.reduce((a,t)=>a+earned(t)-paid(t),0))}</strong>
+      </div>`
+    : `
+      <div class="stat">
+        <small>My lessons this month</small>
+        <strong>${lessons}</strong>
+      </div>
+      <div class="stat green">
+        <small>My earnings this month</small>
+        <strong>${money(own)}</strong>
+      </div>`;
+
+  let rows=ts.map((t,i)=>`
+    <tr>
+      <td>
+        <div class="teachername">${esc(t.teacher)}</div>
+        <div class="sub">${esc(t.subject)} · ${esc(t.class)}</div>
+      </td>
+      <td>${t.lessons.filter(l=>l.date.startsWith(m)).length}</td>
+      <td>${admin()||t.showAmount?money(earned(t,m)):'Hidden'}</td>
+      ${admin()?`
+        <td>${money(paid(t,m))}</td>
+        <td class="${earned(t)-paid(t)>0?'negative':'positive'}">
+          ${money(earned(t)-paid(t))}
+        </td>`:''}
+      <td>
+        <button class="btn light small" data-action="openTeacher" data-value="${i}">
+          View calendar
+        </button>
+      </td>
+    </tr>`).join('');
+
+  return monthHeader()+`
+    <div class="stats">${cards}</div>
+    <div class="card">
+      <div class="cardhead">
+        <h3>${admin()?'Teacher lesson summary':'My lesson summary'}</h3>
+        ${admin()?'<button class="btn light small" data-action="export">Export CSV</button>':''}
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Teacher / assignment</th>
+              <th>Lessons</th>
+              <th>Earned</th>
+              ${admin()?'<th>Paid</th><th>Balance</th>':''}
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${rows?'':'<div class="empty">No teacher assignments have been added yet.</div>'}
+    </div>`;
+}
+
+// ---------- CALENDAR ----------
+function calendar(){
+  let ts=D().teachers||[];
+
+  if(!ts.length){
+    return '<div class="card empty">No teacher assignment is available yet. Contact the administrator.</div>';
+  }
+
+  let t=currentTeacher();
+  let [y,m]=S.month.split('-').map(Number);
+  let first=(new Date(y,m-1,1).getDay()+6)%7;
+  let days=new Date(y,m,0).getDate();
+
+  let html=['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+    .map(x=>`<div class="dow">${x}</div>`).join('');
+
+  html+='<div class="day blank"></div>'.repeat(first);
+
+  for(let d=1;d<=days;d++){
+    let ds=`${y}-${pad(m)}-${pad(d)}`;
+    let ls=t.lessons.filter(l=>l.date===ds);
+    let h=holiday(ds);
+    let n=S.selected.get(ds)||0;
+    let can=ls.length+n<D().rates.maxLessonsPerDay;
+
+    html+=`
+      <div class="day ${weekend(ds)?'weekend':''} ${h?'holiday':''}
+        ${ls.length?'has':''} ${n?'selected':''}
+        ${admin()&&can?'selectable':''}"
+        ${admin()&&can?`data-action="pickDay" data-value="${ds}"`:''}>
+        <span class="daynum">${d}</span>
+        ${h?`<span class="holidayname">${esc(h.note||'Holiday')}</span>`:''}
+        ${ls.length?`
+          <span class="daymeta">
+            ${ls.length} lesson(s)
+            ${admin()?`
+              <button class="btn red small"
+                style="padding:1px 5px"
+                data-action="deleteLesson"
+                data-value="${ls[ls.length-1].rowIndex}">×</button>`:''}
+          </span>`:''}
+        ${n?`<span class="daymeta">+${n} selected</span>`:''}
+      </div>`;
+  }
+
+  let amount=t.lessons
+    .filter(l=>l.date.startsWith(S.month))
+    .reduce((a,l)=>a+rate(l.date),0);
+
+  return monthHeader()+`
+    <div class="card">
+      <div class="cardbody">
+        <div class="field" style="max-width:520px">
+          <label>${admin()?'Select teacher assignment':'Your assignment'}</label>
+          ${admin()?`
+            <select id="teacherSelect">
+              ${ts.map(x=>`
+                <option value="${esc(key(x))}"
+                  ${key(x)===key(t)?'selected':''}>
+                  ${esc(x.teacher)} — ${esc(x.subject)} (${esc(x.class)})
+                </option>`).join('')}
+            </select>`
+            :`<input disabled value="${esc(t.teacher)} — ${esc(t.subject)} (${esc(t.class)})">`}
+        </div>
+
+        ${admin()?`
+          <div class="monthtools">
+            <button class="btn light small" data-action="weekdays">Select weekdays</button>
+            <button class="btn light small" data-action="clear">Clear selection</button>
+            <span class="muted">Select dates, then save lessons.</span>
+          </div>`:''}
+
+        <div class="calendar">${html}</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <small>Lessons this month</small>
+        <strong>${t.lessons.filter(l=>l.date.startsWith(S.month)).length}</strong>
+      </div>
+      <div class="stat green">
+        <small>Earned this month</small>
+        <strong>${money(amount)}</strong>
+      </div>
+      <div class="stat">
+        <small>Payment received · all time</small>
+        <strong>${money(paid(t))}</strong>
+      </div>
+    </div>`;
+}
+
+// ---------- PAYMENTS ----------
+function payments(){
+  let ts=D().teachers||[];
+
+  if(!ts.length){
+    return '<div class="card empty">No payment information is available.</div>';
+  }
+
+  if(!admin()){
+    let rows=D().payments.map(p=>`
+      <tr>
+        <td>${esc(p.date)}</td>
+        <td>${esc(p.subject)} · ${esc(p.class)}</td>
+        <td>${esc(p.month)}</td>
+        <td class="positive">${money(p.amount)}</td>
+        <td>${esc(p.note)}</td>
+      </tr>`).join('');
+
+    return `
+      <div class="stats">
+        <div class="stat">
+          <small>Total earned</small>
+          <strong>${money(ts.reduce((a,t)=>a+earned(t),0))}</strong>
+        </div>
+        <div class="stat green">
+          <small>Total received</small>
+          <strong>${money(D().payments.reduce((a,p)=>a+p.amount,0))}</strong>
+        </div>
+        <div class="stat red">
+          <small>Outstanding</small>
+          <strong>${money(ts.reduce((a,t)=>a+earned(t)-paid(t),0))}</strong>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardhead"><h3>My payment history</h3></div>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Assignment</th><th>Month</th><th>Amount</th><th>Note</th></tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        ${rows?'':'<div class="empty">No payments recorded yet.</div>'}
+      </div>`;
+  }
+
+  let t=payTeacher();
+
+  let history=[...D().payments].reverse().map(p=>`
+    <tr>
+      <td>${esc(p.date)}</td>
+      <td>
+        ${esc(p.teacher)}
+        <div class="sub">${esc(p.subject)} · ${esc(p.class)}</div>
+      </td>
+      <td>${esc(p.month)}</td>
+      <td class="positive">${money(p.amount)}</td>
+      <td>${esc(p.note)}</td>
+      <td>
+        <button class="btn red small" data-action="deletePayment" data-value="${p.rowIndex}">
+          Delete
+        </button>
+      </td>
+    </tr>`).join('');
+
+  return `
+    <div class="card">
+      <div class="cardhead"><h3>Record payment</h3></div>
+      <div class="cardbody">
+        <form id="paymentForm">
+          <div class="field">
+            <label>Teacher assignment</label>
+            <select name="assignment">
+              ${ts.map(x=>`
+                <option value="${esc(key(x))}" ${key(x)===key(t)?'selected':''}>
+                  ${esc(x.teacher)} — ${esc(x.subject)} (${esc(x.class)})
+                </option>`).join('')}
+            </select>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <small>Earned</small>
+              <strong id="earnedValue">${money(earned(t))}</strong>
+            </div>
+            <div class="stat green">
+              <small>Paid</small>
+              <strong id="paidValue">${money(paid(t))}</strong>
+            </div>
+            <div class="stat red">
+              <small>Balance</small>
+              <strong id="balanceValue">${money(earned(t)-paid(t))}</strong>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label>Amount</label>
+              <input name="amount" type="number" min="1" required
+                value="${Math.max(0,earned(t)-paid(t))}">
+            </div>
+            <div class="field">
+              <label>Date paid</label>
+              <input name="date" type="date" value="${today()}" required>
+            </div>
+            <div class="field">
+              <label>For month</label>
+              <input name="month" type="month" value="${S.month}" required>
+            </div>
+            <div class="field">
+              <label>Note</label>
+              <input name="note" placeholder="Optional note">
+            </div>
+          </div>
+          <button class="btn green">Save payment</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>Payment records</h3></div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th><th>Teacher</th><th>Month</th>
+              <th>Amount</th><th>Note</th><th></th>
+            </tr>
+          </thead>
+          <tbody>${history}</tbody>
+        </table>
+      </div>
+      ${history?'':'<div class="empty">No payments yet.</div>'}
+    </div>`;
+}
+
+// ---------- TEACHER ASSIGNMENTS ----------
+function teachers(){
+  let ts=D().teachers||[];
+
+  let rows=ts.map((t,i)=>`
+    <tr>
+      <td><b>${esc(t.teacher)}</b></td>
+      <td>${esc(t.subject)}</td>
+      <td>${esc(t.class)}</td>
+      <td>${t.lessons.length}</td>
+      <td>
+        <button class="btn ${t.showAmount?'green':'light'} small"
+          data-action="visibility" data-value="${i}">
+          ${t.showAmount?'Public amount on':'Public amount off'}
+        </button>
+      </td>
+      <td>
+        <button class="btn red small" data-action="deleteTeacher" data-value="${i}">
+          Delete
+        </button>
+      </td>
+    </tr>`).join('');
+
+  return `
+    <div class="card">
+      <div class="cardhead"><h3>Add teacher assignment</h3></div>
+      <div class="cardbody">
+        <form id="teacherForm">
+          <div class="grid">
+            <div class="field">
+              <label>Teacher full name</label>
+              <input name="teacher" required>
+            </div>
+            <div class="field">
+              <label>Subject</label>
+              <input name="subject" required>
+            </div>
+            <div class="field">
+              <label>Class</label>
+              <input name="class" required placeholder="e.g. JSS1A">
+            </div>
+            <div><button class="btn">Add assignment</button></div>
+          </div>
+        </form>
+        <p class="muted">Add one record for each teacher, subject and class combination.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>Teacher assignments (${ts.length})</h3></div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Teacher</th><th>Subject</th><th>Class</th>
+              <th>Lessons</th><th>Public earnings</th><th></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${rows?'':'<div class="empty">No teacher assignments yet.</div>'}
+    </div>`;
+}
+
+// ---------- ACCOUNTS ----------
+function accounts(){
+  let rows=(D().accounts||[]).map(a=>`
+    <tr>
+      <td><b>${esc(a.username)}</b></td>
+      <td>${esc(a.teacherName||'—')}</td>
+      <td>${esc(a.role)}</td>
+      <td>
+        <span class="pill ${a.status==='active'?'green':a.status==='pending'?'':'red'}">
+          ${esc(a.status)}
+        </span>
+      </td>
+      <td>
+        ${a.role==='teacher'&&a.status==='pending'?`
+          <button class="btn green small" data-action="approve" data-value="${esc(a.id)}">
+            Approve
+          </button>`:''}
+        ${a.role==='teacher'&&a.status==='active'?`
+          <button class="btn red small" data-action="deactivate" data-value="${esc(a.id)}">
+            Deactivate
+          </button>`:''}
+      </td>
+    </tr>`).join('');
+
+  return `
+    <div class="card">
+      <div class="cardhead"><h3>Create teacher login</h3></div>
+      <div class="cardbody">
+        <form id="accountForm">
+          <div class="grid">
+            <div class="field">
+              <label>Teacher's full name</label>
+              <input name="teacherName" required>
+            </div>
+            <div class="field">
+              <label>Username</label>
+              <input name="username" required minlength="4">
+            </div>
+            <div class="field">
+              <label>Temporary password (min. 8 characters)</label>
+              <input name="password" type="password" minlength="8" required>
+            </div>
+            <div><button class="btn">Create account</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>Accounts and registration approvals</h3></div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Username</th><th>Teacher</th><th>Role</th><th>Status</th><th>Action</th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${rows?'':'<div class="empty">No accounts found.</div>'}
+    </div>`;
+}
+
+// ---------- COMPLAINTS ----------
+function complaints(){
+  let list=[...(D().complaints||[])].reverse();
+
+  let rows=list.map(c=>`
+    <div class="card">
+      <div class="cardbody">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <b>${esc(c.title)}</b>
+          <span class="pill ${c.status==='Resolved'?'green':c.status==='Under Review'?'':'red'}">
+            ${esc(c.status)}
+          </span>
+        </div>
+
+        <p class="muted" style="margin:5px 0 10px">
+          ${esc(c.category)} · ${esc(c.submittedBy)} · ${esc(c.createdAt)}
+        </p>
+
+        <p>${esc(c.description)}</p>
+
+        ${c.adminResponse?`
+          <div class="notice">
+            <b>Administrator response</b><br>
+            ${esc(c.adminResponse)}
+          </div>`:''}
+
+        ${admin()?`
+          <form class="complaintUpdate" data-id="${esc(c.id)}" style="margin-top:13px">
+            <div class="grid">
+              <div class="field">
+                <label>Status</label>
+                <select name="status">
+                  ${['Pending','Under Review','Resolved'].map(s=>`
+                    <option ${s===c.status?'selected':''}>${s}</option>`).join('')}
+                </select>
+              </div>
+              <div class="field">
+                <label>Response</label>
+                <input name="response" value="${esc(c.adminResponse)}"
+                  placeholder="Response to the complainant">
+              </div>
+              <div><button class="btn small">Update</button></div>
+            </div>
+          </form>`:''}
+      </div>
+    </div>`).join('');
+
+  return `
+    <div class="card">
+      <div class="cardhead"><h3>Submit a complaint</h3></div>
+      <div class="cardbody">
+        <form id="complaintForm">
+          <div class="grid">
+            <div class="field">
+              <label>Category</label>
+              <select name="category" required>
+                <option value="">Select category</option>
+                <option>Lesson record</option>
+                <option>Payment</option>
+                <option>Account access</option>
+                <option>Technical problem</option>
+                <option>Staff matter</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Title</label>
+              <input name="title" maxlength="120" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Complaint details</label>
+            <textarea name="description" maxlength="5000" required></textarea>
+          </div>
+          <button class="btn">Submit complaint</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="cardhead" style="padding-left:2px;border:0">
+      <h3>${admin()?'All complaints':'My complaints'}</h3>
+    </div>
+
+    ${rows||'<div class="card empty">No complaints submitted yet.</div>'}`;
+}
+
+// ---------- PROFILE ----------
+function profile(){
+  return `
+    <div class="card">
+      <div class="cardhead"><h3>My account</h3></div>
+      <div class="cardbody">
+        <p><b>Username:</b> ${esc(S.user.username)}</p>
+        <p><b>Account type:</b> ${esc(S.user.role)}</p>
+        <p><b>Name:</b> ${esc(S.user.teacherName||'Administrator')}</p>
+        <p><b>Status:</b> ${esc(S.user.status)}</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>Change password</h3></div>
+      <div class="cardbody">
+        <form id="passwordForm">
+          <div class="grid">
+            <div class="field">
+              <label>Current password</label>
+              <input name="oldPassword" type="password" required>
+            </div>
+            <div class="field">
+              <label>New password</label>
+              <input name="newPassword" type="password" minlength="8" required>
+            </div>
+            <div><button class="btn">Change password</button></div>
+          </div>
+        </form>
+      </div>
+    </div>`;
+}
+
+// ---------- SETTINGS ----------
+function settings(){
+  let r=D().rates;
+
+  let hs=D().holidays.map(h=>`
+    <span class="pill">
+      ${esc(h.date)} ${esc(h.note)}
+      <button class="btn red small" data-action="deleteHoliday" data-value="${h.rowIndex}">
+        ×
+      </button>
+    </span>`).join('');
+
+  return `
+    <div class="card">
+      <div class="cardhead"><h3>Lesson rates and settings</h3></div>
+      <div class="cardbody">
+        <form id="ratesForm">
+          <div class="grid">
+            <div class="field">
+              <label>Weekday rate</label>
+              <input name="weekday" type="number" min="0" value="${r.weekday}" required>
+            </div>
+            <div class="field">
+              <label>Weekend / holiday rate</label>
+              <input name="weekend" type="number" min="0" value="${r.weekend}" required>
+            </div>
+            <div class="field">
+              <label>Maximum lessons per day</label>
+              <select name="max">
+                <option value="1" ${r.maxLessonsPerDay===1?'selected':''}>1</option>
+                <option value="2" ${r.maxLessonsPerDay===2?'selected':''}>2</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Currency</label>
+              <input name="currency" maxlength="3" value="${esc(r.currency)}" required>
+            </div>
+            <div><button class="btn">Save settings</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="cardhead"><h3>School holidays</h3></div>
+      <div class="cardbody">
+        <form id="holidayForm">
+          <div class="grid">
+            <div class="field">
+              <label>Date</label>
+              <input name="date" type="date" required>
+            </div>
+            <div class="field">
+              <label>Holiday name / note</label>
+              <input name="note">
+            </div>
+            <div><button class="btn">Add holiday</button></div>
+          </div>
+        </form>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:14px">
+          ${hs||'<span class="muted">No holidays entered.</span>'}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ---------- RENDER ----------
+function render(){
+  if(!D())return;
+
+  $('#nav').classList.remove('hide');
+  $('#roleBadge').textContent=admin()
+    ?'Administrator'
+    :`Teacher · ${S.user.teacherName}`;
+
+  $('#authAction').textContent='Sign out';
+
+  let tabs=[
+    ['overview','Overview'],
+    ['calendar',admin()?'Record Lessons':'My Calendar'],
+    ['payments',admin()?'Payments':'My Payments'],
+    ['complaints','Complaints'],
+    ['profile','My Account']
+  ];
+
+  if(admin()){
+    tabs.push(['teachers','Teachers'],['accounts','Accounts'],['settings','Settings']);
+  }
+
+  if(!tabs.some(t=>t[0]===S.tab))S.tab='overview';
+
+  $('#tabs').innerHTML=tabs.map(([id,label])=>`
+    <button class="${S.tab===id?'active':''}" data-tab="${id}">
+      ${label}
+    </button>`).join('');
+
+  let views={
+    overview,
+    calendar,
+    payments,
+    complaints,
+    profile,
+    teachers,
+    accounts,
+    settings
+  };
+
+  $('#main').innerHTML=views[S.tab]();
+
+  $('#savebar').innerHTML=
+    admin()&&S.tab==='calendar'&&S.selected.size
+      ?`
+        <div class="bottomsave">
+          <div>
+            <span>
+              <b>${S.selected.size}</b> date(s) selected ·
+              ${[...S.selected].reduce((a,[d,n])=>a+n,0)} lesson(s)
+            </span>
+            <div class="rowactions">
+              <button class="btn light" data-action="clear">Clear</button>
+              <button class="btn green" data-action="saveLessons">Save lessons</button>
+            </div>
+          </div>
+        </div>`
+      :'';
+
+  bindForms();
+}
+
+// ---------- FORM HANDLERS ----------
+function bindForms(){
+  let f=$('#teacherForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+
+      await perform('registerTeacher',{
+        teacher:x.get('teacher'),
+        subject:x.get('subject'),
+        class:x.get('class')
+      },'Teacher assignment added');
+    };
+  }
+
+  f=$('#accountForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+
+      await perform('createTeacherAccount',{
+        teacherName:x.get('teacherName'),
+        username:x.get('username'),
+        password:x.get('password')
+      },'Teacher account created');
+    };
+  }
+
+  f=$('#paymentForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+      let [teacher,subject,cls]=x.get('assignment').split('|');
+
+      await perform('addPayment',{
+        teacher,
+        subject,
+        class:cls,
+        amount:x.get('amount'),
+        date:x.get('date'),
+        month:x.get('month'),
+        note:x.get('note')
+      },'Payment saved');
+    };
+  }
+
+  f=$('#ratesForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+
+      await perform('updateRates',{
+        rateWeekday:x.get('weekday'),
+        rateWeekend:x.get('weekend'),
+        maxLessonsPerDay:x.get('max'),
+        currency:x.get('currency')
+      },'Settings saved');
+    };
+  }
+
+  f=$('#holidayForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+
+      await perform('addHoliday',{
+        date:x.get('date'),
+        note:x.get('note')
+      },'Holiday added');
+    };
+  }
+
+  f=$('#complaintForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+
+      await perform('submitComplaint',{
+        category:x.get('category'),
+        title:x.get('title'),
+        description:x.get('description')
+      },'Complaint submitted');
+    };
+  }
+
+  f=$('#passwordForm');
+
+  if(f){
+    f.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(f);
+
+      await perform('changePassword',{
+        oldPassword:x.get('oldPassword'),
+        newPassword:x.get('newPassword')
+      },'Password changed');
+    };
+  }
+
+  document.querySelectorAll('.complaintUpdate').forEach(form=>{
+    form.onsubmit=async e=>{
+      e.preventDefault();
+      let x=new FormData(form);
+
+      await perform('updateComplaint',{
+        complaintId:form.dataset.id,
+        status:x.get('status'),
+        adminResponse:x.get('response')
+      },'Complaint updated');
+    };
+  });
+
+  let sel=$('#teacherSelect');
+
+  if(sel){
+    sel.onchange=()=>{
+      S.teacherKey=sel.value;
+      S.selected.clear();
+      render();
+    };
+  }
+}
+
+// ---------- ACTIONS ----------
+async function perform(action,p,msg){
+  try{
+    await api(action,p);
+    toast(msg);
+    render();
+  }catch(e){
+    toast(e.message,true);
+  }
+}
+
+async function saveLessons(){
+  let t=currentTeacher();
+  if(!t||!S.selected.size)return;
+
+  let jobs=[];
+
+  S.selected.forEach((n,d)=>{
+    for(let i=0;i<n;i++)jobs.push(d);
+  });
+
+  for(let i=0;i<jobs.length;i++){
+    try{
+      await api('addLesson',{
+        teacher:t.teacher,
+        subject:t.subject,
+        class:t.class,
+        date:jobs[i],
+        dayType:weekend(jobs[i])||holiday(jobs[i])?'weekend':'weekday'
+      });
+    }catch(e){
+      toast(`Stopped at ${i+1}/${jobs.length}: ${e.message}`,true);
+      S.selected.clear();
+      render();
+      return;
+    }
+  }
+
+  S.selected.clear();
+  toast(`${jobs.length} lesson(s) saved`);
+  render();
+}
+
+// ---------- CSV EXPORT ----------
+function exportCsv(){
+  let rows=[['Date','Teacher','Subject','Class','Type','Rate']];
+
+  D().teachers.forEach(t=>{
+    t.lessons
+      .filter(l=>l.date.startsWith(S.month))
+      .forEach(l=>{
+        rows.push([
+          l.date,
+          t.teacher,
+          t.subject,
+          t.class,
+          holiday(l.date)?'holiday':weekend(l.date)?'weekend':'weekday',
+          rate(l.date)
+        ]);
+      });
+  });
+
+  let csv=rows.map(r=>
+    r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')
+  ).join('\n');
+
+  let a=document.createElement('a');
+  a.href=URL.createObjectURL(
+    new Blob(['\ufeff'+csv],{type:'text/csv'})
+  );
+  a.download=`GTMC_Lessons_${S.month}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// ---------- NAVIGATION ----------
+$('#tabs').addEventListener('click',e=>{
+  let b=e.target.closest('[data-tab]');
+
+  if(b){
+    S.tab=b.dataset.tab;
+    S.selected.clear();
+    render();
+  }
+});
+
+// ---------- BUTTON ACTIONS ----------
+document.addEventListener('click',async e=>{
+  let b=e.target.closest('[data-action]');
+  if(!b)return;
+
+  let a=b.dataset.action;
+  let v=b.dataset.value;
+
+  if(a==='month'){
+    let [y,m]=S.month.split('-').map(Number);
+    m+=Number(v);
+
+    if(m<1){m=12;y--;}
+    if(m>12){m=1;y++;}
+
+    S.month=`${y}-${pad(m)}`;
+    render();
+
+  }else if(a==='thismonth'){
+    S.month=today().slice(0,7);
+    render();
+
+  }else if(a==='openTeacher'){
+    S.teacherKey=key(D().teachers[Number(v)]);
+    S.tab='calendar';
+    render();
+
+  }else if(a==='pickDay'){
+    let t=currentTeacher();
+    let used=t.lessons.filter(l=>l.date===v).length;
+    let cur=S.selected.get(v)||0;
+
+    if(used+cur>=D().rates.maxLessonsPerDay){
+      S.selected.delete(v);
+    }else{
+      S.selected.set(v,cur+1);
+    }
+
+    render();
+
+  }else if(a==='clear'){
+    S.selected.clear();
+    render();
+
+  }else if(a==='weekdays'){
+    let [y,m]=S.month.split('-').map(Number);
+    let t=currentTeacher();
+
+    for(let d=1;d<=new Date(y,m,0).getDate();d++){
+      let ds=`${y}-${pad(m)}-${pad(d)}`;
+      let used=t.lessons.filter(l=>l.date===ds).length;
+
+      if(!weekend(ds)&&!holiday(ds)&&used<D().rates.maxLessonsPerDay){
+        S.selected.set(ds,1);
+      }
+    }
+
+    render();
+
+  }else if(a==='saveLessons'){
+    saveLessons();
+
+  }else if(a==='deleteLesson'){
+    if(confirm('Delete this lesson?')){
+      perform('deleteLesson',{rowIndex:Number(v)},'Lesson deleted');
+    }
+
+  }else if(a==='deletePayment'){
+    if(confirm('Delete this payment record?')){
+      perform('deletePayment',{rowIndex:Number(v)},'Payment deleted');
+    }
+
+  }else if(a==='deleteHoliday'){
+    if(confirm('Delete this holiday?')){
+      perform('deleteHoliday',{rowIndex:Number(v)},'Holiday deleted');
+    }
+
+  }else if(a==='visibility'){
+    let t=D().teachers[Number(v)];
+
+    perform('toggleVisibility',{
+      teacher:t.teacher,
+      subject:t.subject,
+      class:t.class,
+      show:!t.showAmount
+    },'Visibility updated');
+
+  }else if(a==='deleteTeacher'){
+    let t=D().teachers[Number(v)];
+
+    if(confirm(`Delete ${t.teacher} — ${t.subject} (${t.class}) and its lesson records?`)){
+      perform('deleteTeacher',{
+        teacher:t.teacher,
+        subject:t.subject,
+        class:t.class
+      },'Assignment deleted');
+    }
+
+  }else if(a==='approve'){
+    perform('approveAccount',{userId:v},'Account approved');
+
+  }else if(a==='deactivate'){
+    if(confirm('Deactivate this teacher account?')){
+      perform('deactivateAccount',{userId:v},'Account deactivated');
+    }
+
+  }else if(a==='export'){
+    exportCsv();
+  }
+});
+
+// ---------- TOP BAR ----------
 $('#refreshBtn').onclick=load;
 $('#authAction').onclick=()=>logout();
+
 load();
-</script></body></html>
+</script>
+</body>
+</html>
